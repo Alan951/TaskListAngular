@@ -1,0 +1,30 @@
+<mat-card class="mb-3">
+  <mat-card-header>
+    <mat-card-title>
+      Nueva tarea
+      {{ (taskToAdd && taskToAdd.titulo && taskToAdd.titulo.trim() != '') ? ' - ' + taskToAdd.titulo : '' }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="w-100">
+            <input required [(ngModel)]="taskToAdd.titulo" name="titulo" matInput type="text" placeholder="Titulo de la Tarea">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-form-field class="w-100">
+            <textarea required [(ngModel)]="taskToAdd.descripcion" name="descripcion" matInput type="text" placeholder="Descripción"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="w-100 text-right">
+        <button mat-raised-button color="primary" (click)="addTask()" class="mr-2">Agrear Tarea</button>
+        <a type="cancel" mat-stroked-button color="primary" (click)="cancel()">Cancelar</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

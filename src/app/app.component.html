@@ -5,6 +5,13 @@
   </div>
 
   <!-- Lista de tareas -->
+  <div *ngIf="!addTaskComponent" class="text-right mb-3">
+    <button mat-raised-button color="primary" (click)="newTask()">Nueva Tarea</button>
+  </div>
+
+  <!-- Agregar tarea component contenedor -->
+  <div #addCompContainer></div>
+  <!--<app-add-task></app-add-task>-->
   <div class="list-group" class="mat-elevation-z2">
     <div *ngFor="let task of getTasks()" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex w-100 justify-content-between">
@@ -19,7 +26,7 @@
     </div>
   </div>
   <div class="text-right mt-3">
-    <mat-checkbox labelPosition="before" [(ngModel)]="tasksCompleted">Mostrar completados</mat-checkbox>
+    <mat-checkbox color="primary" labelPosition="before" [(ngModel)]="tasksCompleted">Mostrar completados</mat-checkbox>
   </div>
 
 </div>
