@@ -39,6 +39,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   public exit(status: string): void{
+    //Emitir evento de salida.
     this.exitEmitter.emit(status);
   }
 

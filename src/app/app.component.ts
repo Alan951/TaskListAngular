@@ -22,7 +22,7 @@ export class AppComponent {
 
   public deleteTask(task: TaskModel) {
     let elementIndex: number;
-
+    //Obtener el indice de la tarea a eliminar
     elementIndex = this.taskService.getTaskList().indexOf(task);
     this.taskService.getTaskList().splice(elementIndex, 1);
   }
@@ -32,10 +32,13 @@ export class AppComponent {
   }
 
   public newTask(): void{
+    //Instanciar el componente dinamicamente
     let compFactory = this.factoryResolver.resolveComponentFactory(AddTaskComponent)
     let compRef = this.addCompContainer.createComponent(compFactory);
     let addTaskCompInstance = (<AddTaskComponent>compRef.instance);
     this.addTaskComponent = addTaskCompInstance;
+
+    //Escuchar el evento cuando presione cancelar o aceptar
     this.addTaskComponent.exitEmitter.subscribe((res) => {
       console.log(res);
       this.addCompContainer.remove(0);
@@ -44,9 +47,9 @@ export class AppComponent {
   }
 
   public getTasks(): Array<TaskModel> {
-    if (this.tasksCompleted) { 
+    if (this.tasksCompleted) { //Obtener todas las tareas
       return this.taskService.getTaskList();
-    } else {
+    } else { //Obtener las tareas filtradas, solo las que no han sido realizadas
       return this.taskService.getTaskList().filter((task) => !task.realizada);
     }
   }
